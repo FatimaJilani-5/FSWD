@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatima Jilani | Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f0f14;
+            color: white;
+        }
+
+        header {
+            background-color: #15151d;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid #292936;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #a855f7;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #a855f7;
+        }
+
+        .hero {
+            min-height: 600px;
+            padding: 80px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-text p:first-child {
+            color: #a855f7;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #a855f7;
+        }
+
+        .hero-description {
+            color: #aaa;
+            line-height: 1.7;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 13px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .primary {
+            background-color: #a855f7;
+            color: white;
+        }
+
+        .primary:hover {
+            background-color: #9333ea;
+        }
+
+        .secondary {
+            border: 1px solid #a855f7;
+            color: #a855f7;
+        }
+
+        .secondary:hover {
+            background-color: #a855f7;
+            color: white;
+        }
+
+        .hero-image {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #a855f7;
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+        }
+
+        section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .section-title span {
+            color: #a855f7;
+        }
+
+        .section-title p {
+            color: #888;
+        }
+
+        .about {
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-box {
+            max-width: 850px;
+            background-color: #181820;
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid #292936;
+        }
+
+        .about-box p {
+            color: #aaa;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .skill {
+            background-color: #181820;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #292936;
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            transform: translateY(-5px);
+            border-color: #a855f7;
+        }
+
+        .skill h3 {
+            margin-bottom: 12px;
+        }
+
+        .skill p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .project {
+            background-color: #181820;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #292936;
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-7px);
+            border-color: #a855f7;
+        }
+
+        .project img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 22px;
+        }
+
+        .project h3 {
+            color: #a855f7;
+            margin-bottom: 10px;
+        }
+
+        .project p {
+            color: #999;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .education {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .education-box {
+            background-color: #181820;
+            padding: 25px;
+            margin-bottom: 15px;
+            border-left: 4px solid #a855f7;
+            border-radius: 8px;
+        }
+
+        .education-box h3 {
+            margin-bottom: 8px;
+        }
+
+        .education-box p {
+            color: #999;
+        }
+
+        .contact {
+            background-color: #15151d;
+            text-align: center;
+        }
+
+        .contact p {
+            color: #aaa;
+            margin: 12px;
+        }
+
+        .contact a {
+            color: #a855f7;
+            text-decoration: none;
+        }
+
+        .socials {
+            margin-top: 25px;
+        }
+
+        .socials a {
+            display: inline-block;
+            border: 1px solid #a855f7;
+            padding: 10px 18px;
+            margin: 5px;
+            border-radius: 6px;
+        }
+
+        .socials a:hover {
+            background-color: #a855f7;
+            color: white;
+        }
+
+        footer {
+            background-color: #0a0a0d;
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        @media (max-width: 800px) {
+            header {
+                padding: 20px;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .skills,
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            nav a {
+                font-size: 12px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .hero-image {
+                width: 210px;
+                height: 210px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">Fatima.</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+    </header>
+
+
+    <section class="hero" id="home">
+
+        <div class="hero-text">
+
+            <p>Hello, I'm</p>
+
+            <h1>
+                Fatima <span>Jilani</span>
+            </h1>
+
+            <p class="hero-description">
+                A Computer Science student interested in web development,
+                UI/UX design and creating clean and modern digital experiences.
+            </p>
+
+            <div class="buttons">
+                <a href="#projects" class="btn primary">View My Work</a>
+                <a href="#contact" class="btn secondary">Contact Me</a>
+            </div>
+
+        </div>
+
+        <img src="profile.jpg" class="hero-image" alt="Fatima">
+
+    </section>
+
+
+    <section id="about">
+
+        <div class="section-title">
+            <h2>About <span>Me</span></h2>
+            <p>A little about myself</p>
+        </div>
+
+        <div class="about">
+
+            <div class="about-box">
+                <p>
+                    I am a Computer Science student with an interest in
+                    technology, web development and UI/UX design. I enjoy
+                    creating websites and applications that are simple,
+                    useful and visually appealing. I am continuously learning
+                    new technologies and improving my programming and design
+                    skills through different academic and personal projects.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="skills">
+
+        <div class="section-title">
+            <h2>My <span>Skills</span></h2>
+            <p>Technologies and tools I work with</p>
+        </div>
+
+        <div class="skills">
+
+            <div class="skill">
+                <h3>HTML & CSS</h3>
+                <p>Creating structured and responsive websites.</p>
+            </div>
+
+            <div class="skill">
+                <h3>JavaScript</h3>
+                <p>Adding functionality and interaction to websites.</p>
+            </div>
+
+            <div class="skill">
+                <h3>C++</h3>
+                <p>Programming, problem solving and data structures.</p>
+            </div>
+
+            <div class="skill">
+                <h3>Figma</h3>
+                <p>Designing website and application prototypes.</p>
+            </div>
+
+            <div class="skill">
+                <h3>Flutter</h3>
+                <p>Building mobile application interfaces.</p>
+            </div>
+
+            <div class="skill">
+                <h3>Git & GitHub</h3>
+                <p>Managing and sharing software projects.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="projects">
+
+        <div class="section-title">
+            <h2>My <span>Projects</span></h2>
+            <p>Some of my recent work</p>
+        </div>
+
+        <div class="projects">
+
+            <div class="project">
+
+                <img src="fitme.png" alt="FitMe Project">
+
+                <div class="project-content">
+                    <h3>FitMe</h3>
+
+                    <p>
+                        A fitness mobile application designed to help users
+                        plan workouts and maintain a healthy lifestyle.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="project">
+
+                <img src="freelancehub.png" alt="FreelanceHub Project">
+
+                <div class="project-content">
+                    <h3>FreelanceHub</h3>
+
+                    <p>
+                        A freelance marketplace where clients and freelancers
+                        can connect and work on different projects.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="project">
+
+                <img src="vibematch.png" alt="VibeMatch Project">
+
+                <div class="project-content">
+                    <h3>VibeMatch</h3>
+
+                    <p>
+                        A web-based project designed with an interactive
+                        interface and modern visual experience.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section>
+
+        <div class="section-title">
+            <h2>My <span>Education</span></h2>
+        </div>
+
+        <div class="education">
+
+            <div class="education-box">
+                <h3>Bachelor of Science in Computer Science</h3>
+                <p>Air University</p>
+                <p>2024 - Present</p>
+            </div>
+
+            <div class="education-box">
+                <h3>Computer Science</h3>
+                <p>Higher Secondary Education</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="contact" id="contact">
+
+        <div class="section-title">
+            <h2>Contact <span>Me</span></h2>
+            <p>Let's connect</p>
+        </div>
+
+        <p>Email: <a href="mailto:fatima@gmail.com">fatima@gmail.com</a></p>
+
+        <p>Phone: +92 300 0000000</p>
+
+        <div class="socials">
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Instagram</a>
+        </div>
+
+    </section>
+
+
+    <footer>
+        <p>© 2026 Fatima Jilani. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

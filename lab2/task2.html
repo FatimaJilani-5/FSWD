@@ -3,56 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook Home</title>
+    <title>Facebook – log in or sign up</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: Arial, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #f0f2f5;
             color: #1c1e21;
         }
 
         .navbar {
-            height: 60px;
+            height: 56px;
             background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            border-bottom: 1px solid #ddd;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 100;
         }
 
         .logo {
             color: #1877f2;
-            font-size: 32px;
-            font-weight: bold;
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
         }
 
-        .search {
-            background-color: #f0f2f5;
-            border: none;
-            outline: none;
-            border-radius: 20px;
-            padding: 11px 16px;
-            width: 250px;
-            font-size: 14px;
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 12px;
-        }
-
-        .nav-icons div {
+        .nav-icon {
             width: 40px;
             height: 40px;
             background-color: #e4e6eb;
@@ -62,169 +40,167 @@
             justify-content: center;
             font-size: 18px;
             cursor: pointer;
+            transition: background-color 0.2s;
         }
 
-        .nav-icons div:hover {
+        .nav-icon:hover {
             background-color: #d8dadf;
         }
 
-        .main {
-            display: flex;
-            gap: 25px;
+        .main-container {
             max-width: 1400px;
-            margin: 20px auto;
-            padding: 0 20px;
         }
 
         .left-sidebar {
-            width: 250px;
+            width: 280px;
             flex-shrink: 0;
+            position: sticky;
+            top: 70px;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
         }
 
         .profile-menu {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px;
-            margin-bottom: 8px;
+            padding: 8px;
             border-radius: 8px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
+            transition: background-color 0.2s;
         }
 
         .profile-menu:hover,
-        .menu-item:hover {
-            background-color: #ddd;
+        .menu-item:hover,
+        .contact:hover {
+            background-color: #e4e6eb;
         }
 
         .small-profile {
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             object-fit: cover;
         }
 
         .menu-item {
-            padding: 12px;
-            margin-bottom: 3px;
+            padding: 8px;
             border-radius: 8px;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 14px;
             cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .feed {
-            width: 600px;
-            margin: 0 auto;
+            width: 680px;
+            max-width: 100%;
         }
 
         .stories {
             background-color: white;
-            padding: 12px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
             overflow: hidden;
         }
 
         .story {
-            width: 105px;
-            height: 160px;
-            border-radius: 10px;
+            width: 110px;
+            height: 190px;
+            border-radius: 12px;
             position: relative;
             overflow: hidden;
-            background-color: #ddd;
+            background-color: #242526;
             flex-shrink: 0;
             cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .story:hover {
+            transform: scale(1.02);
         }
 
         .story img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .story-avatar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 32px !important;
+            height: 32px !important;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
         .story-name {
             position: absolute;
-            bottom: 8px;
-            left: 8px;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
             color: white;
             font-size: 13px;
-            font-weight: bold;
-            text-shadow: 0 1px 3px black;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .post-box {
+        .post-box,
+        .post {
             background-color: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            border-radius: 8px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
-        .post-top {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
         .profile {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             object-fit: cover;
         }
 
         .post-input {
-            flex: 1;
             background-color: #f0f2f5;
-            border-radius: 25px;
-            padding: 13px 16px;
+            border-radius: 20px;
+            padding: 10px 16px;
             color: #65676b;
             cursor: pointer;
+            font-size: 15px;
         }
 
         .post-input:hover {
             background-color: #e4e6eb;
         }
 
-        .post-options {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 15px;
-            border-top: 1px solid #ddd;
-            padding-top: 12px;
-        }
-
         .option {
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 14px;
             color: #65676b;
             cursor: pointer;
-            padding: 8px;
+            padding: 8px 12px;
             border-radius: 6px;
-        }
-
-        .option:hover {
-            background-color: #f0f2f5;
-        }
-
-        .post {
-            background-color: white;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            padding: 15px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .post-header {
             display: flex;
-            gap: 10px;
             align-items: center;
+            gap: 8px;
+        }
+
+        .option:hover,
+        .action:hover {
+            background-color: #f0f2f5;
         }
 
         .post-info h3 {
             font-size: 15px;
-            margin-bottom: 3px;
+            font-weight: 600;
+            margin-bottom: 0 !important;
         }
 
         .post-info p {
@@ -233,122 +209,115 @@
         }
 
         .post-text {
-            margin: 15px 0;
             line-height: 1.5;
             font-size: 15px;
+            color: #050505;
         }
 
         .post-image {
             width: 100%;
-            height: 350px;
+            max-height: 500px;
             object-fit: cover;
-            border-radius: 5px;
-            display: block;
         }
 
         .post-stats {
-            display: flex;
-            justify-content: space-between;
             color: #65676b;
             font-size: 13px;
-            padding: 10px 5px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .post-actions {
-            display: flex;
-            justify-content: space-around;
-            padding-top: 8px;
         }
 
         .action {
-            flex: 1;
-            text-align: center;
-            padding: 8px;
-            border-radius: 6px;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 14px;
             color: #65676b;
             cursor: pointer;
-        }
-
-        .action:hover {
-            background-color: #f0f2f5;
+            padding: 6px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
 
         .right-sidebar {
-            width: 250px;
+            width: 280px;
             flex-shrink: 0;
+            position: sticky;
+            top: 70px;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
         }
 
         .right-sidebar h3 {
             color: #65676b;
-            margin-bottom: 15px;
+            font-size: 15px;
+            font-weight: 600;
         }
 
         .contact {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px;
+            padding: 6px 8px;
             border-radius: 8px;
             cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
         }
 
-        .contact:hover {
-            background-color: #ddd;
+        .contact-wrapper {
+            position: relative;
         }
 
         .contact-image {
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             object-fit: cover;
         }
 
-        @media (max-width: 1050px) {
+        .online-dot {
+            width: 9px;
+            height: 9px;
+            background-color: #31a24c;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border: 2px solid white;
+        }
+
+        @media (max-width: 1100px) {
             .right-sidebar {
-                display: none;
+                display: none !important;
             }
         }
 
-        @media (max-width: 750px) {
+        @media (max-width: 768px) {
             .left-sidebar {
-                display: none;
+                display: none !important;
             }
 
             .feed {
                 width: 100%;
             }
+        }
 
-            .search {
-                width: 180px;
+        @media (max-width: 600px) {
+            .logo {
+                font-size: 30px;
             }
         }
 
-        @media (max-width: 500px) {
-            .navbar {
-                padding: 0 10px;
-            }
-
+        @media (max-width: 480px) {
             .logo {
-                font-size: 25px;
+                font-size: 26px;
             }
 
-            .search {
-                width: 140px;
+            .nav-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
             }
 
             .nav-icons {
-                gap: 5px;
-            }
-
-            .nav-icons div {
-                width: 35px;
-                height: 35px;
-            }
-
-            .stories {
-                overflow-x: auto;
+                gap: 4px !important;
             }
         }
     </style>
@@ -356,182 +325,364 @@
 
 <body>
 
-    <div class="navbar">
+    <nav class="navbar d-flex align-items-center justify-content-between px-3">
 
-        <div class="logo">
-            facebook
+        <div class="d-flex align-items-center">
+            <div class="logo">
+                facebook
+            </div>
         </div>
 
-        <input
-            type="text"
-            class="search"
-            placeholder="Search Facebook"
-        >
+        <div class="nav-icons d-flex gap-2">
+            <div class="nav-icon" title="Home">
+                ⌂
+            </div>
 
-        <div class="nav-icons">
-            <div>⌂</div>
-            <div>🔔</div>
-            <div>☰</div>
+            <div class="nav-icon" title="Notifications">
+                🔔
+            </div>
+
+            <div class="nav-icon" title="Menu">
+                ☰
+            </div>
         </div>
 
-    </div>
+    </nav>
 
-    <div class="main">
 
-        <div class="left-sidebar">
+    <main class="main-container container-fluid d-flex gap-3 my-3 mx-auto px-2 px-md-3">
 
-            <div class="profile-menu">
-                <img src="profile.jpg" class="small-profile">
+
+        <aside class="left-sidebar d-none d-md-block">
+
+            <div class="profile-menu d-flex align-items-center gap-3 mb-1">
+                <img
+                    src="profile.jpg"
+                    class="small-profile"
+                >
                 <span>Fatima</span>
             </div>
 
-            <div class="menu-item">👥 Friends</div>
-            <div class="menu-item">🕘 Memories</div>
-            <div class="menu-item">💾 Saved</div>
-            <div class="menu-item">👨‍👩‍👧 Groups</div>
-            <div class="menu-item">🏪 Marketplace</div>
-            <div class="menu-item">🎬 Videos</div>
-            <div class="menu-item">📅 Events</div>
+            <div class="menu-item">
+                👥 Friends
+            </div>
 
-        </div>
+            <div class="menu-item">
+                🕘 Memories
+            </div>
 
-        <div class="feed">
+            <div class="menu-item">
+                💾 Saved
+            </div>
 
-            <div class="stories">
+            <div class="menu-item">
+                👨‍👩‍👧 Groups
+            </div>
+
+            <div class="menu-item">
+                🏪 Marketplace
+            </div>
+
+            <div class="menu-item">
+                🎬 Watch
+            </div>
+
+            <div class="menu-item">
+                📅 Events
+            </div>
+
+        </aside>
+
+
+        <section class="feed mx-auto">
+
+
+            <div class="stories d-flex gap-2 p-2 mb-3">
 
                 <div class="story">
                     <img src="profile.jpg">
-                    <div class="story-name">Fatima</div>
+                    <div class="story-name">
+                        Create Story
+                    </div>
                 </div>
+
 
                 <div class="story">
                     <img src="friend1.jpg">
-                    <div class="story-name">Raheel</div>
+                    <img
+                        src="friend1.jpg"
+                        class="story-avatar"
+                    >
+                    <div class="story-name">
+                        Raheel
+                    </div>
                 </div>
+
 
                 <div class="story">
                     <img src="friend2.jpg">
-                    <div class="story-name">Sarah</div>
+                    <img
+                        src="friend2.jpg"
+                        class="story-avatar"
+                    >
+                    <div class="story-name">
+                        Sarah
+                    </div>
                 </div>
+
 
                 <div class="story">
                     <img src="friend3.png">
-                    <div class="story-name">Ayesha</div>
+                    <img
+                        src="friend3.png"
+                        class="story-avatar"
+                    >
+                    <div class="story-name">
+                        Ayesha
+                    </div>
                 </div>
 
             </div>
 
-            <div class="post-box">
 
-                <div class="post-top">
+            <div class="post-box p-3 mb-3">
 
-                    <img src="profile.jpg" class="profile">
-
-                    <div class="post-input">
+                <div class="post-top d-flex align-items-center gap-2">
+                    <img
+                        src="profile.jpg"
+                        class="profile"
+                    >
+                    <div class="post-input flex-grow-1">
                         What's on your mind, Fatima?
                     </div>
-
                 </div>
 
-                <div class="post-options">
-                    <div class="option">📹 Live Video</div>
-                    <div class="option">🖼️ Photo/Video</div>
-                    <div class="option">😊 Feeling/Activity</div>
+                <div class="post-options d-flex justify-content-around mt-3 pt-2 border-top">
+                    <div class="option">
+                        📹 Live video
+                    </div>
+
+                    <div class="option">
+                        🖼️ Photo/video
+                    </div>
+
+                    <div class="option">
+                        😊 Feeling/activity
+                    </div>
                 </div>
 
             </div>
 
-            <div class="post">
 
-                <div class="post-header">
+            <article class="post p-3 mb-3">
 
-                    <img src="friend1.jpg" class="profile">
+                <div class="post-header d-flex align-items-center justify-content-between">
 
-                    <div class="post-info">
-                        <h3>Raheel Ahmad</h3>
-                        <p>2 hrs · 🌎</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <img
+                            src="friend1.jpg"
+                            class="profile"
+                        >
+                        <div class="post-info">
+                            <h3 class="mb-0">
+                                Raheel Ahmad
+                            </h3>
+                            <p class="mb-0">
+                                2 hrs · 🌎
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="text-muted"
+                        style="cursor: pointer; font-weight: bold;"
+                    >
+                        ···
                     </div>
 
                 </div>
 
-                <div class="post-text">
+
+                <div class="post-text my-2">
                     Hang out with friends! 😊
                 </div>
 
-                <img src="post1.png" class="post-image">
 
-                <div class="post-stats">
-                    <span>👍 ❤️ 24</span>
-                    <span>8 comments · 2 shares</span>
+                <img
+                    src="post1.png"
+                    class="post-image d-block mb-2"
+                >
+
+
+                <div class="post-stats d-flex justify-content-between py-2 px-1 border-bottom">
+                    <span>
+                        👍 ❤️ <strong>24</strong>
+                    </span>
+
+                    <span>
+                        8 comments · 2 shares
+                    </span>
                 </div>
 
-                <div class="post-actions">
-                    <div class="action">👍 Like</div>
-                    <div class="action">💬 Comment</div>
-                    <div class="action">↗ Share</div>
+
+                <div class="post-actions d-flex pt-1">
+                    <div class="action flex-fill">
+                        👍 Like
+                    </div>
+
+                    <div class="action flex-fill">
+                        💬 Comment
+                    </div>
+
+                    <div class="action flex-fill">
+                        ↗ Share
+                    </div>
                 </div>
 
-            </div>
+            </article>
 
-            <div class="post">
 
-                <div class="post-header">
+            <article class="post p-3 mb-3">
 
-                    <img src="friend2.jpg" class="profile">
+                <div class="post-header d-flex align-items-center justify-content-between">
 
-                    <div class="post-info">
-                        <h3>Sarah Hayat Khan</h3>
-                        <p>5 hrs · 🌎</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <img
+                            src="friend2.jpg"
+                            class="profile"
+                        >
+                        <div class="post-info">
+                            <h3 class="mb-0">
+                                Sarah Hayat Khan
+                            </h3>
+                            <p class="mb-0">
+                                5 hrs · 🌎
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="text-muted"
+                        style="cursor: pointer; font-weight: bold;"
+                    >
+                        ···
                     </div>
 
                 </div>
 
-                <div class="post-text">
+
+                <div class="post-text my-2">
                     Coffee + good weather = perfect combination ☕🌤️
                 </div>
 
-                <div class="post-stats">
-                    <span>👍 15</span>
-                    <span>4 comments</span>
+
+                <div class="post-stats d-flex justify-content-between py-2 px-1 border-bottom">
+                    <span>
+                        👍 <strong>15</strong>
+                    </span>
+
+                    <span>
+                        4 comments
+                    </span>
                 </div>
 
-                <div class="post-actions">
-                    <div class="action">👍 Like</div>
-                    <div class="action">💬 Comment</div>
-                    <div class="action">↗ Share</div>
+
+                <div class="post-actions d-flex pt-1">
+                    <div class="action flex-fill">
+                        👍 Like
+                    </div>
+
+                    <div class="action flex-fill">
+                        💬 Comment
+                    </div>
+
+                    <div class="action flex-fill">
+                        ↗ Share
+                    </div>
                 </div>
 
+            </article>
+
+        </section>
+
+
+        <aside class="right-sidebar d-none d-lg-block">
+
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h3 class="mb-0">
+                    Contacts
+                </h3>
+
+                <div
+                    class="text-muted"
+                    style="font-size: 13px; cursor: pointer;"
+                >
+                    🔍 ⚙️
+                </div>
             </div>
 
-        </div>
 
-        <div class="right-sidebar">
-
-            <h3>Contacts</h3>
-
-            <div class="contact">
-                <img src="friend1.jpg" class="contact-image">
-                <span>Raheel Ahmad</span>
+            <div class="contact d-flex align-items-center gap-2">
+                <div class="contact-wrapper">
+                    <img
+                        src="friend1.jpg"
+                        class="contact-image"
+                    >
+                    <div class="online-dot"></div>
+                </div>
+                <span>
+                    Raheel Ahmad
+                </span>
             </div>
 
-            <div class="contact">
-                <img src="friend2.jpg" class="contact-image">
-                <span>Sarah Hayat Khan</span>
+
+            <div class="contact d-flex align-items-center gap-2">
+                <div class="contact-wrapper">
+                    <img
+                        src="friend2.jpg"
+                        class="contact-image"
+                    >
+                    <div class="online-dot"></div>
+                </div>
+                <span>
+                    Sarah Hayat Khan
+                </span>
             </div>
 
-            <div class="contact">
-                <img src="friend3.png" class="contact-image">
-                <span>Ayesha Malik</span>
+
+            <div class="contact d-flex align-items-center gap-2">
+                <div class="contact-wrapper">
+                    <img
+                        src="friend3.png"
+                        class="contact-image"
+                    >
+                    <div class="online-dot"></div>
+                </div>
+                <span>
+                    Ayesha Malik
+                </span>
             </div>
 
-            <div class="contact">
-                <img src="friend4.png" class="contact-image">
-                <span>Hassan Raza</span>
+
+            <div class="contact d-flex align-items-center gap-2">
+                <div class="contact-wrapper">
+                    <img
+                        src="friend4.png"
+                        class="contact-image"
+                    >
+                    <div class="online-dot"></div>
+                </div>
+                <span>
+                    Hassan Raza
+                </span>
             </div>
 
-        </div>
+        </aside>
 
-    </div>
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

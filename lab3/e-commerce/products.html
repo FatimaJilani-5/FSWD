@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | MAISON BEAUTY</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --maison-nude: #f9f5f0;
+      --maison-rose: #e8d8ce;
+      --maison-dark: #1a1817;
+      --maison-gold: #c2a182;
+    }
+
+    body {
+      background-color: var(--maison-nude);
+      color: var(--maison-dark);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Hero Styling */
+    .hero-section {
+      background: linear-gradient(135deg, #f8f1e9 0%, #ede0d4 50%, #e6d5c3 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-img-box {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    .hero-img {
+      height: 420px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .glass-badge {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 12px;
+    }
+
+    .filter-pill {
+      background-color: #ffffff;
+      color: var(--maison-dark);
+      border: 1px solid rgba(26, 24, 23, 0.15);
+      border-radius: 50px;
+      padding: 0.45rem 1.25rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      display: inline-block;
+    }
+
+    .filter-pill:hover,
+    .filter-pill.active {
+      background-color: var(--maison-dark);
+      color: #ffffff;
+      border-color: var(--maison-dark);
+    }
+
+    /* Cards & Products */
+    .card-img-wrapper {
+      overflow: hidden;
+      position: relative;
+      background-color: #f0ebe5;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .product-img {
+      height: 330px;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card:hover .product-img {
+      transform: scale(1.06);
+    }
+
+    .badge-beauty {
+      background-color: #2b2623;
+      color: #f2ece4;
+      letter-spacing: 1px;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 0.4em 0.8em;
+    }
+
+    .btn-beauty-dark {
+      background-color: var(--maison-dark);
+      color: white;
+      border: 1px solid var(--maison-dark);
+      border-radius: 4px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .btn-beauty-dark:hover {
+      background-color: #332f2d;
+      color: white;
+    }
+
+    .btn-beauty-outline {
+      border: 1px solid var(--maison-dark);
+      color: var(--maison-dark);
+      border-radius: 4px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .btn-beauty-outline:hover {
+      background-color: var(--maison-dark);
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top border-bottom border-light">
+  <div class="container py-2">
+
+    <a class="navbar-brand fw-bold fs-3 text-dark" href="index.html" style="letter-spacing: 2px;">
+      MAISON <span class="fw-light fs-5">BEAUTY</span>
+    </a>
+
+    <div class="navbar-nav mx-auto gap-lg-4 text-center my-2 my-lg-0">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link active fw-semibold" href="products.html">Shop</a>
+      <a class="nav-link" href="reviews.html">Reviews</a>
+      <a class="nav-link" href="login.html">Account</a>
+    </div>
+
+    <div class="d-flex gap-2">
+      <a href="login.html" class="btn btn-beauty-outline px-3">Login</a>
+      <a href="cart.html" class="btn btn-beauty-dark px-3">Cart (2)</a>
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- Enhanced Split Editorial Hero Section -->
+<section class="hero-section py-5">
+  <div class="container py-3">
+
+    <div class="row align-items-center g-5">
+
+      <div class="col-lg-6">
+
+        <span class="badge badge-beauty rounded-1 mb-3">
+          CLEAN & SUSTAINABLE BEAUTY
+        </span>
+
+        <h1 class="display-3 fw-bold mb-3" style="letter-spacing: -1px; line-height: 1.1;">
+          Effortless color, <br>
+          <span class="fw-light text-italic">skin-first finish.</span>
+        </h1>
+
+        <p class="lead text-secondary mb-4" style="font-size: 1.1rem; line-height: 1.7;">
+          Explore multi-use tints, hydrating serum blushes, and nourishing formulas created to enhance your natural features.
+        </p>
+
+        <!-- Category Quick Filters -->
+        <div class="d-flex flex-wrap gap-2 mb-2">
+          <a href="#" class="filter-pill active">All Products</a>
+          <a href="#" class="filter-pill">Complexion</a>
+          <a href="#" class="filter-pill">Lips</a>
+          <a href="#" class="filter-pill">Cheeks</a>
+          <a href="#" class="filter-pill">Eyes</a>
+          <a href="#" class="filter-pill">Skincare</a>
+        </div>
+
+      </div>
+
+      <div class="col-lg-6">
+
+        <div class="hero-img-box">
+
+          <img
+            src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=80"
+            class="hero-img"
+            alt="Editorial beauty showcase featuring luminous makeup"
+          >
+
+          <!-- Floating Glassmorphism Badge -->
+          <div class="glass-badge position-absolute bottom-0 start-0 m-4 p-3 shadow-lg" style="max-width: 280px;">
+            <div class="d-flex align-items-center gap-3">
+              <div class="rounded-circle bg-dark text-white d-flex align-items-center justify-content-center fw-bold" style="width: 42px; height: 42px; font-size: 0.8rem;">
+                NEW
+              </div>
+              <div>
+                <small class="text-uppercase text-muted fw-bold d-block" style="font-size: 0.65rem; letter-spacing: 0.5px;">Editor's Pick</small>
+                <span class="fw-bold fs-6 d-block text-dark">Dewy Liquid Flush</span>
+                <span class="small fw-semibold text-secondary">$28.00 — 6 Shades</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Catalog Section -->
+<section class="container py-5">
+
+  <div class="row mb-4 align-items-center">
+
+    <div class="col-md-6">
+      <h2 class="fw-bold mb-1 fs-3">All Products</h2>
+      <p class="text-secondary mb-0 small">Showing 8 of 18 essential formulas</p>
+    </div>
+
+    <div class="col-md-6 text-md-end mt-3 mt-md-0">
+      <label class="small text-secondary me-2">Sort by:</label>
+      <select class="form-select d-inline-block rounded-2 border-secondary-subtle" style="max-width: 200px; font-size: 0.9rem;">
+        <option>Featured Collection</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+        <option>Best Selling</option>
+      </select>
+    </div>
+
+  </div>
+
+
+  <div class="row g-4">
+
+    <!-- Product 1 -->
+    <div class="col-6 col-lg-3">
+      <div class="card border-0 shadow-sm h-100 overflow-hidden rounded-3">
+
+        <div class="card-img-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?auto=format&fit=crop&w=800&q=80"
+            class="card-img-top product-img"
+            alt="Velvet lip oil"
+          >
+
+          <span class="badge badge-beauty position-absolute top-0 start-0 m-3 rounded-1">
+            Bestseller
+          </span>
+        </div>
+
+        <div class="card-body p-3 bg-white d-flex flex-column justify-content-between">
+          <div>
+            <small class="text-secondary text-uppercase fw-semibold" style="font-size: 0.7rem;">Lips</small>
+            <h5 class="fw-bold mt-1 fs-6">Hydrating Velvet Lip Oil</h5>
+            <div class="text-warning small mb-2">★★★★★ <span class="text-muted">(142)</span></div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <strong class="fs-6">$26.00</strong>
+            <a href="cart.html" class="btn btn-beauty-dark btn-sm px-3">Add</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Product 2 -->
+    <div class="col-6 col-lg-3">
+      <div class="card border-0 shadow-sm h-100 overflow-hidden rounded-3">
+
+        <div class="card-img-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?auto=format&fit=crop&w=800&q=80"
+            class="card-img-top product-img"
+            alt="Luminous foundation"
+          >
+        </div>
+
+        <div class="card-body p-3 bg-white d-flex flex-column justify-content-between">
+          <div>
+            <small class="text-secondary text-uppercase fw-semibold" style="font-size: 0.7rem;">Complexion</small>
+            <h5 class="fw-bold mt-1 fs-6">Luminous Silk Tint SPF 30</h5>
+            <div class="text-warning small mb-2">★★★★★ <span class="text-muted">(98)</span></div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <strong class="fs-6">$42.00</strong>
+            <a href="cart.html" class="btn btn-beauty-dark btn-sm px-3">Add</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Product 3: UPDATED BLUSH PICTURE -->
+    <div class="col-6 col-lg-3">
+      <div class="card border-0 shadow-sm h-100 overflow-hidden rounded-3">
+
+        <div class="card-img-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80"
+            class="card-img-top product-img"
+            alt="Dewy Dewdrop Blush - Liquid Rose Tint"
+          >
+
+          <span class="badge bg-secondary position-absolute top-0 start-0 m-3 rounded-1" style="font-size: 0.65rem;">
+            NEW SHADE
+          </span>
+        </div>
+
+        <div class="card-body p-3 bg-white d-flex flex-column justify-content-between">
+          <div>
+            <small class="text-secondary text-uppercase fw-semibold" style="font-size: 0.7rem;">Cheeks</small>
+            <h5 class="fw-bold mt-1 fs-6">Dewy Dewdrop Blush</h5>
+            <div class="text-warning small mb-2">★★★★☆ <span class="text-muted">(76)</span></div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <strong class="fs-6">$28.00</strong>
+            <a href="cart.html" class="btn btn-beauty-dark btn-sm px-3">Add</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Product 4 -->
+    <div class="col-6 col-lg-3">
+      <div class="card border-0 shadow-sm h-100 overflow-hidden rounded-3">
+
+        <div class="card-img-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1522337094846-8a818192de1f?auto=format&fit=crop&w=800&q=80"
+            class="card-img-top product-img"
+            alt="Eyeshadow palette"
+          >
+        </div>
+
+        <div class="card-body p-3 bg-white d-flex flex-column justify-content-between">
+          <div>
+            <small class="text-secondary text-uppercase fw-semibold" style="font-size: 0.7rem;">Eyes</small>
+            <h5 class="fw-bold mt-1 fs-6">Satin Bare Eyeshadow Quad</h5>
+            <div class="text-warning small mb-2">★★★★★ <span class="text-muted">(210)</span></div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <strong class="fs-6">$36.00</strong>
+            <a href="cart.html" class="btn btn-beauty-dark btn-sm px-3">Add</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Product 5 -->
+    <div class="col-6 col-lg-3">
+      <div class="card border-0 shadow-sm h-100 overflow-hidden rounded-3">
+
+        <div class="card-img-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80"
+            class="card-img-top product-img"
+            alt="Makeup brushes"
+          >
+        </div>
+
+        <div class="card-body p-3 bg-white d-flex flex-column justify-content-between">
+          <div>
+            <small class="text-secondary text-uppercase fw-semibold" style="font-size: 0.7rem;">Tools</small>
+            <h5 class="fw-bold mt-1 fs-6">Essential Brush Collection</h5>
+            <div class="text-warning small mb-2">★★★★★ <span class="text-muted">(84)</span></div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <strong class="fs-6">$32.00</strong>
+            <a href="cart.html" class="btn btn-beauty-dark btn-sm px-3">Add</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Product 6 -->
+    <div class="col-6 col-lg-3">
+      <div class="card border-0 shadow-sm h-100 overflow-hidden rounded-3">
+
+        <div class="card-img-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=800&q=80"
+            class="card-img-top product-img"
+            alt="Skincare serum"
+          >
+        </div>
+
+        <div class="card-body p-3 bg-white d-flex flex-column justify-content-between">
+          <div>
+            <small class="text-secondary text-uppercase fw-semibold" style="font-size: 0.7rem;">Skincare</small>
+            <h5 class="fw-bold mt-1 fs-6">Skin Silk Renewal Serum</h5>
+            <div class="text-warning small mb-2">★★★★★ <span class="text-muted">(119)</span></div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <strong class="fs-6">$39.00</strong>
+            <a href="cart.html" class="btn btn-beauty-dark btn-sm px-3">Add</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Product 7 -->
+    <div class="col-6 col-lg-3">
+      <div class="card border-0 shadow-sm h-100 overflow-hidden rounded-3">
+
+        <div class="card-img-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=800&q=80"
+            class="card-img-top product-img"
+            alt="Face cream"
+          >
+        </div>
+
+        <div class="card-body p-3 bg-white d-flex flex-column justify-content-between">
+          <div>
+            <small class="text-secondary text-uppercase fw-semibold" style="font-size: 0.7rem;">Skincare</small>
+            <h5 class="fw-bold mt-1 fs-6">Cloud Cream Moisturizer</h5>
+            <div class="text-warning small mb-2">★★★★☆ <span class="text-muted">(63)</span></div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <strong class="fs-6">$34.00</strong>
+            <a href="cart.html" class="btn btn-beauty-dark btn-sm px-3">Add</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Product 8 -->
+    <div class="col-6 col-lg-3">
+      <div class="card border-0 shadow-sm h-100 overflow-hidden rounded-3">
+
+        <div class="card-img-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80"
+            class="card-img-top product-img"
+            alt="Perfume bottle"
+          >
+        </div>
+
+        <div class="card-body p-3 bg-white d-flex flex-column justify-content-between">
+          <div>
+            <small class="text-secondary text-uppercase fw-semibold" style="font-size: 0.7rem;">Fragrance</small>
+            <h5 class="fw-bold mt-1 fs-6">Noir Eau de Parfum</h5>
+            <div class="text-warning small mb-2">★★★★★ <span class="text-muted">(156)</span></div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <strong class="fs-6">$74.00</strong>
+            <a href="cart.html" class="btn btn-beauty-dark btn-sm px-3">Add</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- Footer -->
+<footer class="bg-dark text-white">
+
+  <div class="container py-5">
+
+    <div class="row g-4">
+
+      <div class="col-md-5">
+        <h4 class="fw-bold" style="letter-spacing: 2px;">MAISON BEAUTY</h4>
+        <p class="text-white-50 pe-md-4">
+          Thoughtful beauty essentials designed for effortless everyday routines. Clean formulas, high-performance payoff.
+        </p>
+      </div>
+
+      <div class="col-md-2">
+        <h6 class="text-uppercase mb-3" style="font-size: 0.8rem; letter-spacing: 1px;">SHOP</h6>
+        <a href="products.html" class="d-block text-white-50 text-decoration-none mb-2">Makeup</a>
+        <a href="products.html" class="d-block text-white-50 text-decoration-none mb-2">Skincare</a>
+        <a href="products.html" class="d-block text-white-50 text-decoration-none">Fragrance</a>
+      </div>
+
+      <div class="col-md-2">
+        <h6 class="text-uppercase mb-3" style="font-size: 0.8rem; letter-spacing: 1px;">ACCOUNT</h6>
+        <a href="login.html" class="d-block text-white-50 text-decoration-none mb-2">Login</a>
+        <a href="signup.html" class="d-block text-white-50 text-decoration-none">Sign Up</a>
+      </div>
+
+      <div class="col-md-3">
+        <h6 class="text-uppercase mb-3" style="font-size: 0.8rem; letter-spacing: 1px;">NEWSLETTER</h6>
+        <p class="text-white-50 small">Subscribe for 15% off your first order.</p>
+
+        <div class="input-group">
+          <input type="email" class="form-control form-control-sm border-0" placeholder="Email address">
+          <button class="btn btn-light btn-sm">Join</button>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="border-secondary my-4">
+
+    <p class="text-white-50 small text-center mb-0">
+      &copy; 2026 MAISON BEAUTY. All rights reserved.
+    </p>
+
+  </div>
+
+</footer>
+
+</body>
+</html>

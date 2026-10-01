@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodify | Next-Gen Music Dashboard</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-base: #0b0b11;
+            --bg-surface: #14141c;
+            --bg-sidebar: #101017;
+            --primary-purple: #a855f7;
+            --primary-purple-hover: #9333ea;
+            --border-color: #24242d;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1030;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link {
+            color: #94a3b8;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 10px 16px;
+            border-radius: 10px;
+            margin-bottom: 4px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: linear-gradient(90deg, rgba(168, 85, 247, 0.15), transparent);
+            color: var(--primary-purple);
+        }
+
+        .main-content {
+            margin-left: 260px;
+            padding: 30px 40px 140px;
+            min-height: 100vh;
+        }
+
+        .search-wrapper {
+            position: relative;
+            max-width: 380px;
+            width: 100%;
+        }
+
+        .search-input {
+            background-color: #15151d;
+            border: 1px solid #272732;
+            color: #fff;
+            border-radius: 50px;
+            padding: 12px 20px 12px 45px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            background-color: #1a1a24;
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.25);
+            color: #fff;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+        }
+
+        .hero-banner {
+            background: radial-gradient(circle at 90% 20%, rgba(109, 50, 144, 0.4) 0%, transparent 40%),
+                        linear-gradient(135deg, #1f122e 0%, #111017 70%);
+            border: 1px solid #322045;
+            border-radius: 24px;
+            padding: 45px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: var(--primary-purple);
+            opacity: 0.08;
+            filter: blur(50px);
+            top: -50px;
+            right: -50px;
+            border-radius: 50%;
+        }
+
+        .mood-card {
+            height: 130px;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+        }
+
+        .mood-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .mood-card::before {
+            content: '';
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 50%;
+            top: -20px;
+            right: -20px;
+        }
+
+        .song-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .song-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-purple);
+            background-color: #191823;
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
+        }
+
+        .song-img-container {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .song-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .song-card:hover .song-img {
+            transform: scale(1.05);
+        }
+
+        .hover-play-btn {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 42px;
+            height: 42px;
+            background-color: var(--primary-purple);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
+        }
+
+        .song-card:hover .hover-play-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 0;
+            left: 260px;
+            right: 0;
+            height: 90px;
+            background: rgba(16, 16, 23, 0.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border-color);
+            z-index: 1040;
+            padding: 0 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .player-range {
+            accent-color: var(--primary-purple);
+            height: 4px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 80px;
+                padding: 20px 10px;
+            }
+            .sidebar .logo-text, .sidebar .menu-label, .sidebar .nav-link span {
+                display: none;
+            }
+            .sidebar .nav-link {
+                text-align: center;
+                padding: 12px;
+            }
+            .main-content {
+                margin-left: 80px;
+                padding: 25px 20px 140px;
+            }
+            .music-player {
+                left: 80px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 20px 15px 140px;
+            }
+            .music-player {
+                left: 0;
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar d-flex flex-column justify-content-between p-3">
+        <div>
+            <a href="#" class="d-flex align-items-center gap-2 text-decoration-none px-2 mb-4">
+                <div class="bg-purple text-white rounded-3 d-flex align-items-center justify-content-center fw-bold fs-5" style="width: 38px; height: 38px; background: var(--primary-purple);">M</div>
+                <span class="logo-text fs-4 fw-bold text-white tracking-wide">Mood<span style="color: var(--primary-purple);">ify</span></span>
+            </a>
+
+            <div class="text-uppercase text-muted fw-bold px-2 mb-2 menu-label" style="font-size: 0.65rem; letter-spacing: 1.5px;">Main Menu</div>
+            <ul class="nav flex-column gap-1">
+                <li class="nav-item"><a href="#" class="nav-link active"><i class="bi bi-house-door fs-5 me-2"></i> <span>Home</span></a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-compass fs-5 me-2"></i> <span>Discover</span></a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-heart fs-5 me-2"></i> <span>Favorites</span></a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-collection fs-5 me-2"></i> <span>Library</span></a></li>
+            </ul>
+
+            <div class="text-uppercase text-muted fw-bold px-2 mt-4 mb-2 menu-label" style="font-size: 0.65rem; letter-spacing: 1.5px;">Your Music</div>
+            <ul class="nav flex-column gap-1">
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-clock-history fs-5 me-2"></i> <span>Recently Played</span></a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-music-note-list fs-5 me-2"></i> <span>Playlists</span></a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-disc fs-5 me-2"></i> <span>Albums</span></a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        
+        <header class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+            <div class="search-wrapper">
+                <i class="bi bi-search search-icon"></i>
+                <input type="text" class="form-control search-input shadow-none" placeholder="Search songs, artists, or albums...">
+            </div>
+
+            <div class="d-flex align-items-center gap-3 bg-surface border border-secondary border-opacity-25 py-2 px-3 rounded-pill">
+                <img src="profile.jpg" alt="Profile" class="rounded-circle border border-2 border-purple" style="width: 38px; height: 38px; object-fit: cover;">
+                <div>
+                    <h6 class="mb-0 fw-bold text-white" style="font-size: 0.85rem;">Fatima</h6>
+                    <span class="text-purple fw-semibold" style="font-size: 0.7rem;"><i class="bi bi-stars"></i> Premium Member</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="hero-banner mb-5">
+            <div class="position-relative z-2" style="max-width: 600px;">
+                <span class="badge bg-purple-subtle text-purple fw-bold px-3 py-2 rounded-pill mb-3" style="background: rgba(168, 85, 247, 0.15); color: #d8b4fe; font-size: 0.75rem;">
+                    <i class="bi bi-sparkles me-1"></i> YOUR PERSONAL MUSIC SPACE
+                </span>
+                <h1 class="display-6 fw-bold mb-3 text-white">What's your <span class="text-purple" style="color: var(--primary-purple);">mood</span> today?</h1>
+                <p class="text-secondary mb-4" style="font-size: 0.95rem; line-height: 1.6;">
+                    Discover hand-curated tracks matching your emotional resonance, unlock breakout underground creators, and build a tailored soundtrack for your routines.
+                </p>
+                <a href="#" class="btn text-white fw-bold px-4 py-2 rounded-3 shadow-sm" style="background-color: var(--primary-purple); font-size: 0.85rem;">
+                    Explore Music <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </section>
+
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <h4 class="fw-bold fs-5 text-white mb-0">Choose Your Mood</h4>
+            <a href="#" class="text-purple text-decoration-none fw-semibold" style="color: var(--primary-purple); font-size: 0.85rem;">View all</a>
+        </div>
+
+        <div class="row g-3 mb-5">
+            <div class="col-xl-3 col-md-6">
+                <div class="mood-card text-white" style="background: linear-gradient(135deg, #ef6b45, #b53268);">
+                    <i class="bi bi-brightness-high fs-3 mb-2"></i>
+                    <h5 class="fw-bold mb-0" style="font-size: 1rem;">Happy & Bright</h5>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="mood-card text-white" style="background: linear-gradient(135deg, #456bd7, #6545b6);">
+                    <i class="bi bi-moon-stars fs-3 mb-2"></i>
+                    <h5 class="fw-bold mb-0" style="font-size: 1rem;">Calm & Relaxed</h5>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="mood-card text-white" style="background: linear-gradient(135deg, #159f83, #326ac4);">
+                    <i class="bi bi-lightning-charge fs-3 mb-2"></i>
+                    <h5 class="fw-bold mb-0" style="font-size: 1rem;">Energetic</h5>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="mood-card text-white" style="background: linear-gradient(135deg, #e99326, #ca467d);">
+                    <i class="bi bi-heart-pulse fs-3 mb-2"></i>
+                    <h5 class="fw-bold mb-0" style="font-size: 1rem;">Romantic</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <h4 class="fw-bold fs-5 text-white mb-0">Recently Played</h4>
+            <a href="#" class="text-purple text-decoration-none fw-semibold" style="color: var(--primary-purple); font-size: 0.85rem;">See all</a>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="song-card">
+                    <div class="song-img-container">
+                        <img src="song1.jpeg" alt="Song cover" class="song-img">
+                        <div class="hover-play-btn"><i class="bi bi-play-fill fs-4"></i></div>
+                    </div>
+                    <div class="pt-3 px-1">
+                        <h6 class="fw-bold text-white mb-1" style="font-size: 0.9rem;">Midnight Dreams</h6>
+                        <p class="text-muted mb-0" style="font-size: 0.75rem;">Luna Waves</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="song-card">
+                    <div class="song-img-container">
+                        <img src="song2.jpg" alt="Song cover" class="song-img">
+                        <div class="hover-play-btn"><i class="bi bi-play-fill fs-4"></i></div>
+                    </div>
+                    <div class="pt-3 px-1">
+                        <h6 class="fw-bold text-white mb-1" style="font-size: 0.9rem;">Golden Hour</h6>
+                        <p class="text-muted mb-0" style="font-size: 0.75rem;">Summer Lane</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="song-card">
+                    <div class="song-img-container">
+                        <img src="song3.jpg" alt="Song cover" class="song-img">
+                        <div class="hover-play-btn"><i class="bi bi-play-fill fs-4"></i></div>
+                    </div>
+                    <div class="pt-3 px-1">
+                        <h6 class="fw-bold text-white mb-1" style="font-size: 0.9rem;">Afterglow</h6>
+                        <p class="text-muted mb-0" style="font-size: 0.75rem;">Nova</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="song-card">
+                    <div class="song-img-container">
+                        <img src="song4.jpg" alt="Song cover" class="song-img">
+                        <div class="hover-play-btn"><i class="bi bi-play-fill fs-4"></i></div>
+                    </div>
+                    <div class="pt-3 px-1">
+                        <h6 class="fw-bold text-white mb-1" style="font-size: 0.9rem;">Ocean Eyes</h6>
+                        <p class="text-muted mb-0" style="font-size: 0.75rem;">Blue Horizon</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="music-player">
+        <div class="d-flex align-items-center gap-3" style="width: 250px;">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=100&auto=format&fit=crop&q=80" alt="Thumbnail" class="rounded-2" style="width: 48px; height: 48px; object-fit: cover;">
+            <div class="overflow-hidden">
+                <h6 class="text-white text-truncate mb-1 fw-bold" style="font-size: 0.8rem;">Midnight Dreams</h6>
+                <p class="text-muted text-truncate mb-0" style="font-size: 0.7rem;">Luna Waves</p>
+            </div>
+            <i class="bi bi-heart text-purple ms-auto fs-6 cursor-pointer"></i>
+        </div>
+
+        <div class="flex-grow-1 px-4 max-w-xl mx-auto d-none d-md-block">
+            <div class="d-flex align-items-center justify-content-center gap-4 text-secondary mb-2">
+                <i class="bi bi-shuffle fs-6 cursor-pointer hover-white"></i>
+                <i class="bi bi-skip-backward-fill fs-5 cursor-pointer hover-white"></i>
+                <button class="btn rounded-circle text-white d-flex align-items-center justify-content-center shadow" style="width: 36px; height: 36px; background-color: var(--primary-purple);">
+                    <i class="bi bi-play-fill fs-5"></i>
+                </button>
+                <i class="bi bi-skip-forward-fill fs-5 cursor-pointer hover-white"></i>
+                <i class="bi bi-repeat fs-6 cursor-pointer hover-white"></i>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <span class="text-muted" style="font-size: 0.65rem;">1:24</span>
+                <input type="range" class="form-range player-range flex-grow-1" min="0" max="100" value="42">
+                <span class="text-muted" style="font-size: 0.65rem;">3:45</span>
+            </div>
+        </div>
+
+        <div class="d-none d-lg-flex align-items-center gap-2" style="width: 140px;">
+            <i class="bi bi-volume-up text-muted"></i>
+            <input type="range" class="form-range player-range flex-grow-1" min="0" max="100" value="70">
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

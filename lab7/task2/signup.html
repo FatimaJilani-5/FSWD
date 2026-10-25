@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | MAISON BEAUTY</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --maison-nude: #f9f5f0;
+      --maison-dark: #1a1817;
+    }
+
+    body {
+      background-color: var(--maison-nude);
+      color: var(--maison-dark);
+    }
+
+    .signup-card {
+      max-width: 520px;
+      margin: auto;
+      background: white;
+    }
+
+    .btn-beauty-dark {
+      background-color: var(--maison-dark);
+      color: white;
+      border: 1px solid var(--maison-dark);
+      border-radius: 2px;
+    }
+
+    .btn-beauty-dark:hover {
+      background-color: #332f2d;
+      color: white;
+    }
+
+    .badge-beauty {
+      background-color: #2b2623;
+      color: #f2ece4;
+      letter-spacing: 1px;
+      font-size: 0.7rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar bg-white shadow-sm border-bottom">
+  <div class="container py-3">
+
+    <a class="navbar-brand fw-bold fs-3" href="index.html" style="letter-spacing: 2px;">
+      MAISON <span class="fw-light fs-5">BEAUTY</span>
+    </a>
+
+    <a href="index.html" class="text-dark text-decoration-none">
+      Back to Store
+    </a>
+
+  </div>
+</nav>
+
+
+<section class="py-5">
+
+  <div class="container py-5">
+
+    <div class="signup-card shadow-sm p-5">
+
+      <div class="text-center mb-4">
+
+        <span class="badge badge-beauty px-3 py-2 mb-3">
+          JOIN MAISON
+        </span>
+
+        <h1 class="fw-bold">Create your account</h1>
+
+        <p class="text-secondary">
+          Save your favourites and enjoy a more personal shopping experience.
+        </p>
+
+      </div>
+
+
+      <form>
+
+        <div class="row g-3">
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">First Name</label>
+            <input type="text" class="form-control" placeholder="First name">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Last Name</label>
+            <input type="text" class="form-control" placeholder="Last name">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label fw-semibold">Email Address</label>
+            <input type="email" class="form-control" placeholder="you@example.com">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label fw-semibold">Password</label>
+            <input type="password" class="form-control" placeholder="Create a password">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label fw-semibold">Confirm Password</label>
+            <input type="password" class="form-control" placeholder="Confirm your password">
+          </div>
+
+          <div class="col-12">
+
+            <div class="form-check">
+
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="terms"
+              >
+
+              <label class="form-check-label small" for="terms">
+                I agree to the terms and conditions.
+              </label>
+
+            </div>
+
+          </div>
+
+          <div class="col-12">
+
+            <button type="submit" class="btn btn-beauty-dark btn-lg w-100">
+              Create Account
+            </button>
+
+          </div>
+
+        </div>
+
+      </form>
+
+
+      <div class="text-center mt-4">
+
+        <p class="text-secondary mb-0">
+          Already have an account?
+          <a href="login.html" class="text-dark fw-semibold">
+            Sign in
+          </a>
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</body>
+</html>
